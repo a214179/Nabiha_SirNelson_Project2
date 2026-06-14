@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nabiha Binti Mohd Daud | Student e-Portfolio</title>
+    <!-- Google Fonts for Modern Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Modern Color Palette inspired by SDG 6 (Clean Water and Sanitation) */
+        :root {
+            --primary-deep: #0b4f6c;
+            --primary-main: #01baef;
+            --primary-light: #e6f8ff;
+            --accent-teal: #20bf55;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --bg-light: #f8fafc;
+            --card-bg: #ffffff;
+            --border-color: #e2e8f0;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.05), 0 4px 6px -2px rgba(0,0,0,0.02);
+            --radius-md: 12px;
+            --radius-lg: 16px;
+        }
+
+        /* Base & Reset Styling */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+        }
+
+        body {
+            line-height: 1.6;
+        }
+
+        /* Sticky Top Navigation Bar */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--primary-deep);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-logo::before {
+            content: '';
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            background-color: var(--primary-main);
+            border-radius: 50%;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 24px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s ease, transform 0.2s ease;
+            position: relative;
+            padding: 4px 0;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary-deep);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary-main);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        /* Container Sections Layout */
+        section {
+            padding: 100px 24px 60px 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-deep);
+            margin-bottom: 40px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 4px;
+            background-color: var(--primary-main);
+            border-radius: 2px;
+        }
+
+        /* Home/Hero Section */
+        #home {
+            padding-top: 140px;
+            padding-bottom: 100px;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: var(--primary-light);
+            color: var(--primary-deep);
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+            border: 1px solid rgba(1, 186, 239, 0.2);
+        }
+
+        .hero-badge .sdg-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--primary-main);
+            border-radius: 50%;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            line-height: 1.2;
+            font-weight: 800;
+            color: var(--primary-deep);
+            margin-bottom: 16px;
+        }
+
+        .hero-title span {
+            color: var(--primary-main);
+        }
+
+        .hero-meta {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+            font-weight: 500;
+        }
+
+        .hero-meta span {
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .hero-desc {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 32px;
+            max-width: 600px;
+        }
+
+        .sdg-box {
+            background-color: var(--card-bg);
+            border-left: 5px solid var(--primary-main);
+            padding: 24px;
+            border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+            box-shadow: var(--shadow-md);
+        }
+
+        .sdg-box h3 {
+            font-size: 1.1rem;
+            color: var(--primary-deep);
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .sdg-box p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .hero-graphic {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .water-sphere {
+            width: 280px;
+            height: 280px;
+            background: linear-gradient(135deg, var(--primary-main), var(--primary-deep));
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            animation: morph 8s ease-in-out infinite alternate;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            flex-direction: column;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(1, 186, 239, 0.3);
+        }
+
+        .water-sphere h4 {
+            font-size: 2.5rem;
+            font-weight: 800;
+        }
+
+        .water-sphere p {
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 600;
+            opacity: 0.9;
+        }
+
+        @keyframes morph {
+            0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+            50% { border-radius: 50% 50% 30% 70% / 50% 60% 40% 60%; }
+            100% { border-radius: 60% 40% 60% 40% / 40% 50% 50% 65%; }
+        }
+
+        /* Labs Section Grid Layout */
+        .labs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 32px;
+        }
+
+        .lab-card {
+            background-color: var(--card-bg);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .lab-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            background-color: #000;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .card-content {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .lab-tag {
+            align-self: flex-start;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--primary-main);
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            color: var(--primary-deep);
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .reflection-block {
+            margin-top: auto;
+            background-color: var(--bg-light);
+            padding: 16px;
+            border-radius: var(--radius-md);
+            border-left: 3px solid var(--primary-main);
+        }
+
+        .reflection-title {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+            letter-spacing: 0.5px;
+        }
+
+        .reflection-text {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-style: italic;
+            line-height: 1.5;
+        }
+
+        /* Projects Section Featured Layout */
+        .projects-container {
+            display: flex;
+            flex-direction: column;
+            gap: 48px;
+        }
+
+        .project-card {
+            background-color: var(--card-bg);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+        }
+
+        .project-details {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .project-badge {
+            align-self: flex-start;
+            background-color: var(--accent-teal);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+        }
+
+        .project-title {
+            font-size: 1.75rem;
+            color: var(--primary-deep);
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+
+        .problem-statement {
+            margin-bottom: 20px;
+        }
+
+        .problem-statement h4, .lessons-learned h4 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            text-transform: uppercase;
+            margin-bottom: 6px;
+            letter-spacing: 0.5px;
+        }
+
+        .problem-statement p, .lessons-learned p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .github-btn {
+            align-self: flex-start;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: #24292e;
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: var(--radius-md);
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-top: 24px;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .github-btn:hover {
+            background-color: #1a1e22;
+            transform: translateY(-2px);
+        }
+
+        .github-btn svg {
+            fill: currentColor;
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Reflection & Learning Journey Section */
+        .reflection-wrapper {
+            background: linear-gradient(135deg, var(--primary-deep), #06354a);
+            color: white;
+            padding: 48px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .reflection-wrapper::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            right: 20px;
+            font-size: 12rem;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.05);
+            font-family: serif;
+            line-height: 1;
+        }
+
+        .reflection-wrapper .section-title {
+            color: white;
+        }
+
+        .reflection-wrapper .section-title::after {
+            background-color: var(--primary-main);
+        }
+
+        .journey-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            font-weight: 400;
+            max-width: 900px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Skills Section */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .skill-badge {
+            background-color: var(--card-bg);
+            color: var(--primary-deep);
+            padding: 14px 28px;
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            font-weight: 600;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .skill-badge:hover {
+            background-color: var(--primary-light);
+            border-color: var(--primary-main);
+            transform: translateY(-2px);
+        }
+
+        .skill-badge::before {
+            content: '✓';
+            color: var(--primary-main);
+            font-weight: 800;
+        }
+
+        /* Resources Section */
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .resource-card {
+            background-color: var(--card-bg);
+            padding: 24px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .resource-card:hover {
+            border-color: var(--primary-main);
+            background-color: var(--primary-light);
+            transform: translateX(4px);
+            color: var(--primary-deep);
+        }
+
+        .resource-card .arrow-icon {
+            color: var(--primary-main);
+            transition: transform 0.2s ease;
+        }
+
+        .resource-card:hover .arrow-icon {
+            transform: translateX(4px);
+        }
+
+        /* Footer Element */
+        footer {
+            background-color: var(--primary-deep);
+            color: rgba(255, 255, 255, 0.8);
+            padding: 40px 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-info p {
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+        }
+
+        .footer-info span {
+            color: var(--primary-main);
+            font-weight: 600;
+        }
+
+        .footer-credit {
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+
+        /* Responsive Breakpoints & Mobile Optimization */
+        @media (max-width: 992px) {
+            #home {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding-top: 100px;
+            }
+            .hero-graphic {
+                order: -1;
+            }
+            .project-card {
+                grid-template-columns: 1fr;
+            }
+            .video-container {
+                order: -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                height: auto;
+                padding: 16px 24px;
+                flex-direction: column;
+                gap: 16px;
+            }
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 16px;
+            }
+            section {
+                padding: 80px 24px 40px 24px;
+            }
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            .project-details {
+                padding: 24px;
+            }
+            .reflection-wrapper {
+                padding: 28px;
+            }
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sticky Navigation Bar -->
+    <header>
+        <nav>
+            <a href="#home" class="nav-logo">Nabiha Portfolio</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#labs">Labs</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#reflection">Reflection</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#resources">Resources</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Home/Hero Section -->
+    <section id="home">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <div class="sdg-dot"></div>
+                SDG 6 Focus: Clean Water & Sanitation
+            </div>
+            <h1 class="hero-title">Hi, I'm <span>Nabiha</span></h1>
+            <div class="hero-meta">
+                Programme: <span>Software Engineering</span> &nbsp;|&nbsp; Instructor: <span>Sir Nelson</span>
+            </div>
+            <p class="hero-desc">
+                This e-Portfolio showcases the labs and projects I completed throughout the Android Development course using Kotlin and Jetpack Compose.
+            </p>
+            <div class="sdg-box">
+                <h3>Aligned with SDG 6</h3>
+                <p>Technology can help people develop better water consumption habits and promote sustainable water usage across communities globally and locally in Malaysia.</p>
+            </div>
+        </div>
+        <div class="hero-graphic">
+            <div class="water-sphere">
+                <h4>SDG 6</h4>
+                <p>Clean Water</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Labs Section -->
+    <section id="labs">
+        <h2 class="section-title">Laboratory Layouts & Implementations</h2>
+        <div class="labs-grid">
+            
+            <!-- Lab 1 -->
+            <article class="lab-card">
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/zXmbAIcmAcY" title="Lab 1 Video UI" allowfullscreen></iframe>
+                </div>
+                <div class="card-content">
+                    <span class="lab-tag">Lab 1</span>
+                    <h3 class="card-title">User Interface (UI) Development</h3>
+                    <div class="reflection-block">
+                        <h4 class="reflection-title">Reflection</h4>
+                        <p class="reflection-text">I learned the basics of creating user interfaces using Jetpack Compose. This lab helped me understand layout design and UI components.</p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Lab 2 -->
+            <article class="lab-card">
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/D3eXac-GTdg" title="Lab 2 Video Interaction" allowfullscreen></iframe>
+                </div>
+                <div class="card-content">
+                    <span class="lab-tag">Lab 2</span>
+                    <h3 class="card-title">User Interaction & States</h3>
+                    <div class="reflection-block">
+                        <h4 class="reflection-title">Reflection</h4>
+                        <p class="reflection-text">I learned how to handle user interactions such as button clicks and input fields. This made the application more interactive and user-friendly.</p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Lab 3 -->
+            <article class="lab-card">
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/MhnjbjISCUo" title="Lab 3 Video Material Design" allowfullscreen></iframe>
+                </div>
+                <div class="card-content">
+                    <span class="lab-tag">Lab 3</span>
+                    <h3 class="card-title">Material Design Components</h3>
+                    <div class="reflection-block">
+                        <h4 class="reflection-title">Reflection</h4>
+                        <p class="reflection-text">I explored Material Design components and learned how to create a consistent and modern user experience.</p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Lab 4 -->
+            <article class="lab-card">
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/zWfcTsIl4O4" title="Lab 4 Video Navigation" allowfullscreen></iframe>
+                </div>
+                <div class="card-content">
+                    <span class="lab-tag">Lab 4</span>
+                    <h3 class="card-title">Navigation Flow Architecture</h3>
+                    <div class="reflection-block">
+                        <h4 class="reflection-title">Reflection</h4>
+                        <p class="reflection-text">I learned how to navigate between multiple screens and manage app flow efficiently.</p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Lab 5 -->
+            <article class="lab-card">
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/LuWIVaf-SkQ?si=v0QguI46x7I6NLm7" title="Lab 5 Video Room Database" allowfullscreen></iframe>
+                </div>
+                <div class="card-content">
+                    <span class="lab-tag">Lab 5</span>
+                    <h3 class="card-title">Local Architecture & Room DB</h3>
+                    <div class="reflection-block">
+                        <h4 class="reflection-title">Reflection</h4>
+                        <p class="reflection-text">I learned how to store and retrieve data using Room Database. This introduced me to local data persistence in Android apps.</p>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2 class="section-title">Capstone Development Projects</h2>
+        <div class="projects-container">
+
+            <!-- Project 1 -->
+            <article class="project-card">
+                <div class="project-details">
+                    <span class="project-badge">Project 1 (Lab 4 + Core Features)</span>
+                    <h3 class="project-title">HydroBuddy Application</h3>
+                    <div class="problem-statement">
+                        <h4>Problem Statement</h4>
+                        <p>Many people in Malaysia, especially students, are not aware of their daily water intake which leads to poor hydration habits and low awareness of water usage. There is a need for a simple tool to help users track their water consumption.</p>
+                    </div>
+                    <div class="lessons-learned">
+                        <h4>Lessons Learned & Reflection</h4>
+                        <p>This project helped me apply navigation and UI concepts in a complete application. I also improved my coding and debugging skills.</p>
+                    </div>
+                    <a href="https://github.com/a214179/A214179_Nabiha_SirNelson_Project1" target="_blank" class="github-btn">
+                        <svg viewBox="0 0 16 16" version="1.1" aria-hidden="true"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+                        View on GitHub
+                    </a>
+                </div>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/d6gWrOaR9p0" title="Project 1 Demo" allowfullscreen></iframe>
+                </div>
+            </article>
+
+            <!-- Project 2 -->
+            <article class="project-card">
+                <div class="project-details">
+                    <span class="project-badge">Project 2 (Advanced Stack)</span>
+                    <h3 class="project-title">HydroBuddy Enterprise</h3>
+                    <div class="problem-statement">
+                        <h4>Problem Statement</h4>
+                        <p>Many people in Malaysia, especially students, are not aware of their daily water intake which leads to poor hydration habits and low awareness of water usage. There is a need for a simple tool to help users track their water consumption.</p>
+                    </div>
+                    <div class="lessons-learned">
+                        <h4>Lessons Learned & Reflection</h4>
+                        <p>This project allowed me to integrate Room, Firebase, APIs, and sensors into a single application. I gained experience in building more advanced Android applications.</p>
+                    </div>
+                    <a href="https://github.com/a214179/A214179_Nabiha_SirNelson_Project2" target="_blank" class="github-btn">
+                        <svg viewBox="0 0 16 16" version="1.1" aria-hidden="true"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+                        View on GitHub
+                    </a>
+                </div>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/ou4YpelKvZs" title="Project 2 Demo" allowfullscreen></iframe>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- Reflection & Learning Journey Section -->
+    <section id="reflection">
+        <div class="reflection-wrapper">
+            <h2 class="section-title">Reflection & Learning Journey</h2>
+            <p class="journey-text">
+                Throughout this course, I learned how to develop Android applications from basic UI design to cloud-integrated systems. Each lab and project improved my technical skills and confidence in mobile app development.
+            </p>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2 class="section-title">Skills & Tech Stack</h2>
+        <div class="skills-container">
+            <div class="skill-badge">Kotlin</div>
+            <div class="skill-badge">Jetpack Compose</div>
+            <div class="skill-badge">Room Database</div>
+            <div class="skill-badge">Navigation Compose</div>
+            <div class="skill-badge">Material Design 3</div>
+            <div class="skill-badge">GitHub</div>
+            <div class="skill-badge">Android Studio</div>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section id="resources">
+        <h2 class="section-title">Resources Used</h2>
+        <div class="resources-grid">
+            <a href="https://developer.android.com" target="_blank" class="resource-card">
+                Android Developer
+                <span class="arrow-icon">→</span>
+            </a>
+            <a href="https://firebase.google.com/docs" target="_blank" class="resource-card">
+                Firebase Docs
+                <span class="arrow-icon">→</span>
+            </a>
+            <a href="https://developer.android.com/jetpack/compose" target="_blank" class="resource-card">
+                Jetpack Compose
+                <span class="arrow-icon">→</span>
+            </a>
+            <a href="https://github.com" target="_blank" class="resource-card">
+                GitHub Platform
+                <span class="arrow-icon">→</span>
+            </a>
+            <a href="https://chatgpt.com" target="_blank" class="resource-card">
+                ChatGPT Assistance
+                <span class="arrow-icon">→</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <p>Developer: <span>Nabiha Binti Mohd Daud</span></p>
+                <p>Matric No: <span>A214179</span></p>
+            </div>
+            <div class="footer-credit">
+                Android Development Portfolio &copy; 2026 | Built for Sustainable Ecosystems
+            </div>
+        </div>
+    </footer>
+
+    <!-- Single Page Active Navigation Tracking -->
+    <script>
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-links a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= (sectionTop - 150)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
